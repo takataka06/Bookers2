@@ -10,4 +10,6 @@ class BooksController < ApplicationController
   end
   def destroy
   end
+  def create
+  end
 end
