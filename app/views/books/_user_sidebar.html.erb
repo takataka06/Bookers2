@@ -1,0 +1,25 @@
+<div class="col-md-3">
+  <h2>User Info</h2>
+
+  <% if user.profile_image.attached? %>
+    <%= image_tag user.profile_image.variant(resize_to_limit: [100, 100]), class: "img-fluid" %>
+  <% else %>
+    <%= image_tag "default.jpg", class: "img-fluid" %>
+  <% end %>
+
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <td><%= user.name %></td>
+    </tr>
+    <tr>
+      <th>Introduction</th>
+      <td><%= user.introduction.presence || "未設定" %></td>
+    </tr>
+  </table>
+
+  <%# 編集ボタン（本人だけ） %>
+  <% if current_user == user %>
+    <%= link_to "プロフィール編集", edit_user_path(user), class: "btn btn-outline-secondary" %>
+  <% end %>
+</div>
