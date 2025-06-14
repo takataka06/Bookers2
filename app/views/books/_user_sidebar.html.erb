@@ -1,6 +1,16 @@
 
   <h2>User info</h2>
 
+  <% if user.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
   
   <% if current_user.profile_image.attached? %>
     <%= image_tag current_user.profile_image.variant(resize_to_limit: [100, 100]), class: "img-fluid" %>
