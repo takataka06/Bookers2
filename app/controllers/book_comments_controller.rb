@@ -6,11 +6,12 @@ class BookCommentsController < ApplicationController
       if @book_comment.save
         redirect_to book_path(@book)
       else
-        @new_book = Book.new
+        flash.now[:notice] = "Update error!"
+        @new_book =Book.new
         render 'books/show'
       end
   end
-    
+  
   def destroy
     @book = Book.find(params[:book_id])
     BookComment.find(params[:id]).destroy
